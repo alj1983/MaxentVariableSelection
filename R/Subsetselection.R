@@ -7,7 +7,5 @@ function(outdir,lowerexclusionthreshold){
     colnames(variable.contributions) <- gsub(".contribution","",colnames(variable.contributions))
     # order the variable contributions so that the most influential variable is the first one
     variable.contributions <- variable.contributions[,order(variable.contributions,decreasing=TRUE)]
-    # Discard variables with a percentage contribution below the 'lowerexclusionthreshold'
-    variable.contributions.selected <- variable.contributions[,variable.contributions>lowerexclusionthreshold]
-    return(variable.contributions.selected)
+    return(variable.contributions)
     }
