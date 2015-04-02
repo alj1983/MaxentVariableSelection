@@ -1,5 +1,5 @@
 Subsetselection <-
-function(outdir,lowerexclusionthreshold){
+function(outdir){
     Resulttable <- read.csv(paste(outdir,"/maxentResults.csv",sep=""),sep=",",header=TRUE)
     # Select those columns where the column names contain the word "contribution"
     variable.contributions <- Resulttable[,(colnames(Resulttable) %in% grep("contribution",colnames(Resulttable),value=T))]
