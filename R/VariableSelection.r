@@ -1,19 +1,3 @@
-source("Subsetselection.R")
-source("Correlations.R")
-source("Maxentrun.R")
-source("ExtractVariables.r")
-
-maxent="../../maxent.jar"
-outdir="../../20150402Test"
-gridfolder="/media/alj/DropboxWork/ScientificJournal/2011ScientificJournal/SDM/GridsForSDM/PresentDay"
-occurrencesites="../../20150401_Fd_WithOslo_e_r.csv"
-backgroundsites="../../20150401_BackgroundPoints_e_r.csv"
-additionalargs="-b 0.5 nolinear noquadratic noproduct nothreshold -a 'raw' -z autorun"
-
-coefficientthreshold <- 0.9
-lowerexclusionthreshold <- 5
-
-
 VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold){
 # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'
     
@@ -136,7 +120,3 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                  col.names = FALSE)
 }
 
-
-
-
-VariableSelection(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold)
