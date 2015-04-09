@@ -15,6 +15,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                                         # Start a file that shows the single steps in the variable selection process
     cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
 
+    cat(c("Model","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+
                                         # Extract only the name and strip off the filepath from the occurrence and background site files
     occurrencesitefilename <- gsub(".*/","",occurrencesites)
     backgroundsitefilename <- gsub(".*/","",backgroundsites)
@@ -40,21 +42,65 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                                         # As long as this is true, variables had been removed in the
                                         # last step and thus, more variables might be redundant.
     variablenames <- beginningvariableset
+
+    # Number the models
+    modelnumber <- 1
+    
     while(length(already.tested.variables)<length(variablenames)){
                                         # As long as there are still
                                         # important variables for
                                         # which correlation was not
                                         # yet tested, continue with the variable reduction steps
-        
-      Maxentrun(maxent = maxent,
+
+                                        # Maxentrun for AUC test value
+                                        # calculation. The preset
+                                        # options options keep the
+                                        # number of created files to a
+                                        # minimum (only the
+                                        # maxentResult.csv file is
+                                        # needed) and to create with
+                                        # every run a new set of
+                                        # random test points.
+        Maxentrun(maxent = maxent,
                   outdir = outdir,
                   gridfolder = gridfolder,
                   occurrencesites = occurrencesites,
                   backgroundsites = backgroundsites,
-                  additionalargs = additionalargs)
-                  
+                  additionalargs = paste("plots=false writeplotdata=false randomseed=true autorun=true writebackgroundpredictions=false replicates=10 replicatetype=subsample randomtestpoints=50 redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputgrids=false ",
+                      additionalargs,sep="")
+                )
+         testAUC <- MaxentAUC(outdir)
         
-                                        # Getting the contributions of environmental variables
+                                        #Maxentrun for information
+                                        #criteria calculation. The
+                                        #preset options reduce the
+                                        #number of unnecessary output
+                                        #files. Information criteria
+                                        #calculation requires only raw
+                                        #output grids, a lambdas file
+                                        #and the latitude and
+                                        #longitude data of occurrence
+                                        #sites.
+
+        Maxentrun(maxent = maxent,
+                  outdir = outdir,
+                  gridfolder = gridfolder,
+                  occurrencesites = occurrencesites,
+                  backgroundsites = backgroundsites,
+                  additionalargs = paste("plots=false writeplotdata=false randomseed=true autorun=true writebackgroundpredictions=false redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputformat=raw ",
+                      additionalargs,sep="")
+                  )
+
+        occurrencesites.data <- read.csv(occurrencesites,header=TRUE)
+        species <- as.character(occurrencesites.data$species[1])
+        lambdas <- paste(outdir,"/",species,".lambdas",sep="")
+        occ <- as.data.frame(cbind(occurrencesites.data$longitude,occurrencesites.data$latitude))
+        gridfolder.without.path <- gsub(".*/","",gridfolder)
+        pred.raw <- paste(outdir,"/",species,"_",gridfolder.without.path,".asc",sep="")
+        ICs <- MaxentIC(pred.raw, occ, lambdas)
+
+        cat(c(modelnumber,as.vector(ICs),testAUC,"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+        
         variablecontributions <- Subsetselection(outdir)
         
         beginning.variable.set <- names(variablecontributions) # The set of
@@ -67,7 +113,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         matching.variables[match(names(variablecontributions),beginningvariableset)] <- variablecontributions
         matching.variables <- unlist(matching.variables)
         
-        cat(c("Contributions",matching.variables,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+        cat(c(paste("Contributions_Model",modelnumber,sep=""),matching.variables,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
         
                                         # selecting the set of variables that exceed a user-defined contribution threshold
         selected.variables <- variablecontributions[,variablecontributions>lowerexclusionthreshold]
@@ -99,7 +145,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         matching.correlations <- unlist(matching.correlations)
         
         
-        cat(c("CorrelationCoefficients",matching.correlations,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+        cat(c(paste("CorrelationCoefficients_Model",modelnumber,sep=""),matching.correlations,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
                                         # The names of uncorrelated
                                         # variables. This is the set
                                         # of remaining variables
@@ -107,6 +153,9 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         
                                         # Creating new csv files that contain only the uncorrelated variables
         ExtractVariables(uncorrelated.variables,occurrencesites,backgroundsites)
+
+        # Increase the model number by 1
+        modelnumber <- modelnumber+1
 
   }
 
