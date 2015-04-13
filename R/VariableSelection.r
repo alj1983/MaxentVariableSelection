@@ -1,4 +1,6 @@
 VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold){
+
+    library("raster")
 # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'
     
                                         # Extracting the set of variables of the original csv table
@@ -91,6 +93,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                       additionalargs,sep="")
                   )
 
+        occurrencesites.data <- read.csv(occurrencesites,header=TRUE)
         species <- as.character(occurrencesites.data$species[1])
         lambdas <- paste(outdir,"/",species,".lambdas",sep="")
         gridfolder.without.path <- gsub(".*/","",gridfolder)
