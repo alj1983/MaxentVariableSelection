@@ -1,30 +1,38 @@
 #The following code implements the calculations of ENMtools and was
-# created by John Baumgartner in the following google groups mailing
+# created by Hackett in the following google groups mailing
 # list: https://groups.google.com/forum/#!topic/maxent/EsXZKlpvdTI
 
-
-MaxentIC <- function(pred.raw, occ, lambdas) {
-  # pred.raw: A raster object or a file path to a raw maxent prediction grid.
-  #           Providing a RasterStack will result in *IC being calculated for 
-  #           each layer. 
-  # occ: A matrix/data.frame with 2 columns (lon, lat). 
-  # lambdas: A maxent object or a file path to a lambdas file.
-  require(raster)
-  if(is(lambdas, 'MaxEnt')) lambdas <- textConnection(lambdas@lambdas)
-  if(is.character(pred.raw)) pred.raw <- raster(pred.raw)
-  lambdas <- read.csv(lambdas, header=FALSE, stringsAsFactors=FALSE) # corrected
-  k <- sum(as.numeric(lambdas[, 2]) != 0) - 4 # corrected
-  out <- t(sapply(seq_len(nlayers(pred.raw)), function(i) {
-    x <- pred.raw[[i]]
-    x.std <- x/sum(values(x), na.rm=TRUE)
-    occ.nodupes <- occ[!duplicated(cellFromXY(x, occ)), ]
-    n <- nrow(occ.nodupes)
-    ll <- log(prod(extract(x.std, occ.nodupes), na.rm=TRUE))
-    AIC <- 2*k - 2*ll
-    AICc <- AIC + ((2*k*(k+1))/(n - k - 1))
-    BIC <- k*log(n) - 2*ll
-    c(n=n, k=k, ll=ll, AIC=AIC, AICc=AICc, BIC=BIC)
-  }))
-  row.names(out) <- names(pred.raw)
-  out
+MaxentIC <- function(csvfile, grdfile, lambdasfile) {
+    nparams = 0
+    probsum = 0
+    loglikelihood = 0
+    AICcscore = 0
+    AICscore = 0
+    BICscore = 0
+    
+    lambdases <- read.csv(lambdasfile, header=FALSE)
+    nparams <- nrow(lambdases[lambdases$V2 != 0, ])
+    nparams = nparams - 4
+    
+    layerRaw <- raster(grdfile)
+    probsum <- cellStats(layerRaw, sum)
+    
+    points <- read.csv(csvfile)
+    npoints <- nrow(points)
+    layerValues <- extract(layerRaw, points[, c("longitude", "latitude")])
+    loglikelihood <- sum(log(layerValues / probsum))
+    
+    if (nparams >= npoints - 1) {
+        AICcscore <- "x"
+        AICscore <- "x"
+        BICscore <- "x"
+    } else {
+        AICcscore = (2 * nparams - 2 * loglikelihood) + (2 * (nparams) * (nparams + 1) / (npoints - nparams - 1))
+        AICscore = 2 * nparams - 2 * loglikelihood
+        BICscore = nparams * log(npoints) - 2 * loglikelihood
+    }
+    
+    ICs <- c(npoints, nparams,  loglikelihood, AICscore, AICcscore, BICscore)
+    
+    return(ICs)
 }

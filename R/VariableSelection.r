@@ -91,13 +91,11 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                       additionalargs,sep="")
                   )
 
-        occurrencesites.data <- read.csv(occurrencesites,header=TRUE)
         species <- as.character(occurrencesites.data$species[1])
         lambdas <- paste(outdir,"/",species,".lambdas",sep="")
-        occ <- as.data.frame(cbind(occurrencesites.data$longitude,occurrencesites.data$latitude))
         gridfolder.without.path <- gsub(".*/","",gridfolder)
         pred.raw <- paste(outdir,"/",species,"_",gridfolder.without.path,".asc",sep="")
-        ICs <- MaxentIC(pred.raw, occ, lambdas)
+        ICs <- MaxentIC( occurrencesites, pred.raw, lambdas)
 
         cat(c(modelnumber,as.vector(ICs),testAUC,"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
         
