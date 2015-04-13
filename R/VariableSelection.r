@@ -17,7 +17,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                                         # Start a file that shows the single steps in the variable selection process
     cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
 
-    cat(c("Model","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+    cat(c("Model","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
 
                                         # Extract only the name and strip off the filepath from the occurrence and background site files
     occurrencesitefilename <- gsub(".*/","",occurrencesites)
@@ -71,7 +71,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
                   additionalargs = paste("plots=false writeplotdata=false randomseed=true autorun=true writebackgroundpredictions=false replicates=10 replicatetype=subsample randomtestpoints=50 redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputgrids=false ",
                       additionalargs,sep="")
                 )
-         testAUC <- MaxentAUC(outdir)
+         AUCs <- MaxentAUC(outdir)
         
                                         #Maxentrun for information
                                         #criteria calculation. The
@@ -100,7 +100,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         pred.raw <- paste(outdir,"/",species,"_",gridfolder.without.path,".asc",sep="")
         ICs <- MaxentIC( occurrencesites, pred.raw, lambdas)
 
-        cat(c(modelnumber,as.vector(ICs),testAUC,"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+        cat(c(modelnumber,as.vector(ICs),AUCs,abs(diff(AUCs)),"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
         
         variablecontributions <- Subsetselection(outdir)
         
