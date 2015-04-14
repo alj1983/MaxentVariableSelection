@@ -1,25 +1,30 @@
-VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold,betamultiplier){
+VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold,betamultiplier){
     library("raster")
     system(paste("mkdir", outdir,sep=" "))
-    for (b in betamultiplier){
-        
+    occurrencesites <- occurrencesites2
+    
                                         # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'
-        
+    
                                         # Extracting the set of variables of the original csv table
-        beginningvariableset <- colnames(read.csv(occurrencesites,header=TRUE))
+    beginningvariableset <- colnames(read.csv(occurrencesites,header=TRUE))
                                         # Excluding the first three columns which contain no variables, but
                                         # the species name, longitudes and latitudes of occurrence sites
-        beginningvariableset <- beginningvariableset[4:length(beginningvariableset)]
-        beginning.variable.set <- beginningvariableset # the very first set of variables
+    beginningvariableset <- beginningvariableset[4:length(beginningvariableset)]
+    beginning.variable.set <- beginningvariableset # the very first set of variables
         
-        uncorrelated.variables <- character() # No variable testing was
-                                        # yet done
-        
+
         
                                         # Start a file that shows the single steps in the variable selection process
-        cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+    cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
         
-        cat(c("Model","betamultiplier","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+    cat(c("Model","betamultiplier","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+
+                                        # Number the models
+    modelnumber <- 1
+
+    for (b in betamultiplier){
+        occurrencesites <- occurrencesites2
+
         
                                         # Extract only the name and strip off the filepath from the occurrence and background site files
         occurrencesitefilename <- gsub(".*/","",occurrencesites)
@@ -32,6 +37,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         occurrencesites <- paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep="")
         backgroundsites <- paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep="")
         
+        uncorrelated.variables <- character() # No variable testing was
+                                        # yet done
         
         already.tested.variables <- character() # Creating an empty
                                         # character vector that
@@ -45,11 +52,9 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         
                                         # As long as this is true, variables had been removed in the
                                         # last step and thus, more variables might be redundant.
-        variablenames <- beginningvariableset
+        variablenames <- beginningvariableset        
         
-                                        # Number the models
-        modelnumber <- 1
-    
+        
         while(length(already.tested.variables)<length(variablenames)){
                                         # As long as there are still
                                         # important variables for
