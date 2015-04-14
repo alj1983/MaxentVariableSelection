@@ -1,7 +1,8 @@
-VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold,betamultiplier){
+VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites2,additionalargs,lowerexclusionthreshold,coefficientthreshold,betamultiplier){
     library("raster")
     system(paste("mkdir", outdir,sep=" "))
     occurrencesites <- occurrencesites2
+    backgroundsites <- backgroundsites2
     
                                         # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'
     
@@ -24,6 +25,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
 
     for (b in betamultiplier){
         occurrencesites <- occurrencesites2
+        backgroundsites <- backgroundsites2
 
         
                                         # Extract only the name and strip off the filepath from the occurrence and background site files
