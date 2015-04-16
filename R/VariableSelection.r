@@ -77,7 +77,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                       gridfolder = gridfolder,
                       occurrencesites = occurrencesites,
                       backgroundsites = backgroundsites,
-                      additionalargs = paste("plots=false writeplotdata=false randomseed=true autorun=true writebackgroundpredictions=false replicates=10 replicatetype=subsample randomtestpoints=50 redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputgrids=false -b ",b," ",
+                      additionalargs = paste("plots=false writeplotdata=false visible=false autorun=true randomseed=true writebackgroundpredictions=false replicates=10 replicatetype=subsample randomtestpoints=50 redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputgrids=false -b ",b," ",
                           additionalargs,sep="")
                       )
             AUCs <- MaxentAUC(outdir)
@@ -98,7 +98,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                       gridfolder = gridfolder,
                       occurrencesites = occurrencesites,
                       backgroundsites = backgroundsites,
-                      additionalargs = paste("plots=false writeplotdata=false randomseed=true autorun=true writebackgroundpredictions=false redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputformat=raw -b ",b," ",
+                      additionalargs = paste("plots=false writeplotdata=false visible=false autorun=true randomseed=true writebackgroundpredictions=false redoifexists writemess=false writeclampgrid=false askoverwrite=false pictures=false outputformat=raw -b ",b," ",
                           additionalargs,sep="")
                       )
             
@@ -168,15 +168,15 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             modelnumber <- modelnumber+1
             
         }
-        
+    }    
                                         # Transform the table that lists Variable selection processes
-        SelectionProcessTable <- read.table(paste(outdir,"/VariableSelectionProcess.txt",sep=""),header=TRUE)
-        
-        SelectionProcessTable.transposed <- t(SelectionProcessTable)
-        
-        write.table(SelectionProcessTable.transposed, file = paste(outdir,"/VariableSelectionProcess.txt",sep="") , append = FALSE, quote = FALSE, sep = "\t",
-                    eol = "\n", na = "NA", dec = ".", row.names = TRUE,
-                    col.names = FALSE)
-    }
+    SelectionProcessTable <- read.table(paste(outdir,"/VariableSelectionProcess.txt",sep=""),header=TRUE)
+    
+    SelectionProcessTable.transposed <- t(SelectionProcessTable)
+    
+    write.table(SelectionProcessTable.transposed, file = paste(outdir,"/VariableSelectionProcess.txt",sep="") , append = FALSE, quote = FALSE, sep = "\t",
+                eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+                col.names = FALSE)
+    
     
 }
