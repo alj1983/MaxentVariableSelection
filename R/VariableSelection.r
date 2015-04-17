@@ -18,7 +18,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                         # Start a file that shows the single steps in the variable selection process
     cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
         
-    cat(c("Model","betamultiplier","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+    cat(c("Model","betamultiplier","variables","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
 
                                         # Number the models
     modelnumber <- 1
@@ -112,14 +112,16 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             gridfolder.without.path <- gsub(".*/","",gridfolder)
             pred.raw <- paste(outdir,"/",species,"_",gridfolder.without.path,".asc",sep="")
             ICs <- MaxentIC( occurrencesites, pred.raw, lambdas)
-            
-            cat(c(modelnumber,b,as.vector(ICs),AUCs,abs(diff(AUCs)),"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
-            
 
-            
             beginning.variable.set <- names(variablecontributions) # The set of
                                         # variables before
                                         # any is removed in this round
+            
+            cat(c(modelnumber,b,length(beginning.variable.set),as.vector(ICs),AUCs,abs(diff(AUCs)),"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+            
+
+            
+            
             
                                         # Extracting the variable contributions for the set of all environmental variables
             matching.variables <- numeric(length(beginningvariableset))
