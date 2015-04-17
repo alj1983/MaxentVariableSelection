@@ -81,7 +81,11 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                           additionalargs,sep="")
                       )
             AUCs <- MaxentAUC(outdir)
-            
+
+            variablecontributions <- Subsetselection(outdir)
+            # Asses the average contribution of each environmental variable
+
+
                                         #Maxentrun for information
                                         #criteria calculation. The
                                         #preset options reduce the
@@ -111,7 +115,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             
             cat(c(modelnumber,b,as.vector(ICs),AUCs,abs(diff(AUCs)),"\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
             
-            variablecontributions <- Subsetselection(outdir)
+
             
             beginning.variable.set <- names(variablecontributions) # The set of
                                         # variables before
