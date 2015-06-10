@@ -1,0 +1,25 @@
+MaxentIC <- function(pred.raw, occ, lambdas) {
+  # pred.raw: A raster object or a file path to a raw maxent prediction grid.
+  #           Providing a RasterStack will result in *IC being calculated for 
+  #           each layer. 
+  # occ: A matrix/data.frame with 2 columns (lon, lat). 
+  # lambdas: A maxent object or a file path to a lambdas file.
+  require(raster)
+  if(is(lambdas, 'MaxEnt')) lambdas <- textConnection(lambdas@lambdas)
+  if(is.character(pred.raw)) pred.raw <- raster(pred.raw)
+  lambdas <- read.csv(lambdas, header=FALSE, stringsAsFactors=FALSE) # corrected
+  k <- sum(as.numeric(lambdas[, 2]) != 0) - 4 # corrected
+  out <- t(sapply(seq_len(nlayers(pred.raw)), function(i) {
+    x <- pred.raw[[i]]
+    x.std <- x/sum(values(x), na.rm=TRUE)
+    occ.nodupes <- occ[!duplicated(cellFromXY(x, occ)), ]
+    n <- nrow(occ.nodupes)
+    ll <- log(prod(extract(x.std, occ.nodupes), na.rm=TRUE))
+    AIC <- 2*k - 2*ll
+    AICc <- AIC + ((2*k*(k+1))/(n - k - 1))
+    BIC <- k*log(n) - 2*ll
+    c(n=n, k=k, ll=ll, AIC=AIC, AICc=AICc, BIC=BIC)
+  }))
+  row.names(out) <- names(pred.raw)
+  out
+}

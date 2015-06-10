@@ -1,0 +1,7 @@
+MaxentAUC <-
+function(outdir){
+    Resulttable <- read.csv(paste(outdir,"/maxentResults.csv",sep=""),sep=",",header=TRUE)
+    # Select those columns where the column name contains the word "Test AUC"
+    TestAUC <- Resulttable[,(colnames(Resulttable) %in% grep("Test AUC",colnames(Resulttable),value=T))]
+    return(TestAUC)
+    }

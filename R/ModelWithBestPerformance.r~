@@ -1,0 +1,25 @@
+ModelWithBestPerformance <- function(outdir,performancevalue){
+
+    # This function extracts the best model based on AUC.Test values and based on AIC.c values
+
+    ModelPerformances <- read.table(paste(outdir,"/ModelPerformance.txt",sep=""),header=TRUE)
+
+    # The user has three options to evaluate model performance, by AUC.Test or AIC.c values.
+    if (performancevalue==AUC.Test){
+        p <- as.numeric(as.vector(ModelPerformances$AUC.Test))
+                                        # Select the model of highest AUC.Test
+        pbest <-  ModelPerformances[which(ModelPerformances$AUC.Test==max(p)),]
+        
+    }
+    if (performancevalue==AIC.c){
+        p <- ModelPerformances$AICc
+                                        # Select the model of highest AUC.Test
+        p <- as.numeric(as.vector(p[p!="x"]))
+        pbest <-  ModelPerformances[which(ModelPerformances$AICc==min(p)),]
+
+    }
+
+    # Write output to a file to inform the user of the model with highest performance
+
+
+}

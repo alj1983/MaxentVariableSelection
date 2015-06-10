@@ -16,7 +16,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
 
         
                                         # Start a file that shows the single steps in the variable selection process
-    cat(c("Variable",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
+    cat(c("Test","Model","betamultiplier",beginningvariableset,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
         
     cat(c("Model","betamultiplier","variables","samples","parameters","loglikelihood","AIC","AICc","BIC","AUC.Test","AUC.Train","AUC.Diff","\n"), file = paste(outdir,"/ModelPerformance.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = FALSE)
 
@@ -65,7 +65,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             
                                         # Maxentrun for AUC test value
                                         # calculation. The preset
-                                        # options options keep the
+                                        # options keep the
                                         # number of created files to a
                                         # minimum (only the
                                         # maxentResult.csv file is
@@ -129,7 +129,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             matching.variables[match(names(variablecontributions),beginningvariableset)] <- variablecontributions
             matching.variables <- unlist(matching.variables)
             
-            cat(c(paste("Contributions_Model",modelnumber,"_Beta",b,sep=""),matching.variables,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+            cat(c("Contributions",modelnumber,b,matching.variables,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
             
                                         # selecting the set of variables that exceed a user-defined contribution threshold
             selected.variables <- variablecontributions[,variablecontributions>lowerexclusionthreshold]
@@ -161,7 +161,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             matching.correlations <- unlist(matching.correlations)
             
             
-            cat(c(paste("CorrelationCoefficients_Model",modelnumber,"_Beta",b,sep=""),matching.correlations,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
+            cat(c("Correlation",modelnumber,b,matching.correlations,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
                                         # The names of uncorrelated
                                         # variables. This is the set
                                         # of remaining variables
