@@ -36,18 +36,18 @@ ModelWithBestPerformance <- function(outdir){
                 eol = "\n", na = "NA", dec = ".", row.names = TRUE,
                 col.names = FALSE)
 
-    cat("\n","==========================================================================,\n")
+    cat("\n","==========================================================================","\n")
     cat(" Model with the maximum AUC.Test value specified in:","\n")
     cat(" ModelWithMaxAUCTest.txt","\n")
-    cat("\n"," Relevant variable selection steps associated with this model are saved in:","\n")
+    cat("\n","Relevant variable selection steps associated with this model are saved in:","\n")
     cat(" VariableSelectionMaxAUCTest.txt","\n")
-    cat("\n","==========================================================================,\n")
+    cat("\n","==========================================================================","\n")
     cat("\n","\n")
-    cat("\n","==========================================================================,\n")
+    cat("\n","==========================================================================","\n")
     cat(" Model with the minimum AICc value specified in:","\n")
     cat(" ModelWithMinAICc.txt","\n")
-    cat("\n"," Relevant variable selection steps associated with this model are saved in:","\n")
+    cat("\n","Relevant variable selection steps associated with this model are saved in:","\n")
     cat(" VariableSelectionMinAICc.txt","\n")
-    cat("\n","==========================================================================,\n")
+    cat("\n","==========================================================================","\n")
     
 }

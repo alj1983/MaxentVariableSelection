@@ -24,6 +24,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
     modelnumber <- 1
 
     for (b in betamultiplier){
+        cat("----------------------- ","\n")
+        cat("Choosing betamultiplier ", b,"\n")
         occurrencesites <- occurrencesites2
         backgroundsites <- backgroundsites2
 
@@ -58,6 +60,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
         
         
         while(length(already.tested.variables)<length(variablenames)){
+            cat("Number of remaining variables",length(variablenames),"\n")
+            cat("Testing variable contributions...","\n")
                                         # As long as there are still
                                         # important variables for
                                         # which correlation was not
@@ -72,6 +76,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                         # needed) and to create with
                                         # every run a new set of
                                         # random test points.
+            cat("Calculating average AUC values from 10 maxent models...","\n")
             Maxentrun(maxent = maxent,
                       outdir = outdir,
                       gridfolder = gridfolder,
@@ -96,7 +101,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                         #and the latitude and
                                         #longitude data of occurrence
                                         #sites.
-            
+            cat("Calculating Information criteria...","\n")            
             Maxentrun(maxent = maxent,
                       outdir = outdir,
                       gridfolder = gridfolder,
@@ -111,6 +116,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             lambdas <- paste(outdir,"/",species,".lambdas",sep="")
             gridfolder.without.path <- gsub(".*/","",gridfolder)
             pred.raw <- paste(outdir,"/",species,"_",gridfolder.without.path,".asc",sep="")
+           
             ICs <- MaxentIC( occurrencesites, pred.raw, lambdas)
 
             beginning.variable.set <- names(variablecontributions) # The set of
@@ -152,6 +158,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                         # variables was already thested
             already.tested.variables <- c(already.tested.variables,important.notyettested.variable)
                                         # Getting a list with  correlation coefficients of all selected variables and the names of uncorrelated variables
+            cat("Testing correlations between relevant variables...","\n")
             correlations <- Correlations(important.notyettested.variable,variablenames,backgroundsites,coefficientthreshold)
             
                                         # Extracting the correlation coefficients for the set of all environmental variables
