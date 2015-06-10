@@ -184,5 +184,12 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                 eol = "\n", na = "NA", dec = ".", row.names = TRUE,
                 col.names = FALSE)
     
-    
+    ModelWithBestPerformance(outdir=outdir) # Extract the models of
+                                            # highest performance (and
+                                            # the associated
+                                            # contribution and
+                                            # correlation tests) based
+                                            # on AICc (minimum) and
+                                            # AUC.Test (maximum)
+                                            # values
 }

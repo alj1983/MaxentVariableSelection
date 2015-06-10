@@ -1,4 +1,4 @@
-ModelWithBestPerformance <- function(outdir,performancevalue){
+ModelWithBestPerformance <- function(outdir){
 
     # This function extracts the best model based on AUC.Test values and based on AIC.c values
 
@@ -42,7 +42,7 @@ ModelWithBestPerformance <- function(outdir,performancevalue){
     cat("\n"," Relevant variable selection steps associated with this model are saved in:","\n")
     cat(" VariableSelectionMaxAUCTest.txt","\n")
     cat("\n","==========================================================================,\n")
-    cat("\n","==========================================================================,\n")
+    cat("\n","\n")
     cat("\n","==========================================================================,\n")
     cat(" Model with the minimum AICc value specified in:","\n")
     cat(" ModelWithMinAICc.txt","\n")
