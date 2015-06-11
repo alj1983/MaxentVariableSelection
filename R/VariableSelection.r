@@ -199,4 +199,18 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                             # on AICc (minimum) and
                                             # AUC.Test (maximum)
                                             # values
+
+                                        # List all files that were created in the outdir folder.
+    all.outfiles <- list.files(outdir)
+                                        # Remove the filenames from this list that shall remain
+    all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionProcess.txt"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelPerformance.txt"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelWithMaxAUCTest.txt"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelWithMinAICc.txt"]                  
+    all.outfiles <- all.outfiles[all.outfiles!="Occurrencedata.csv_VariableSubset.csv"]
+    all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMaxAUCTest.txt"]       
+    all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMinAICc.txt"]
+                                        # remove all the unneccessary output files
+    setwd(outdir)
+    file.remove(all.outfiles)
 }
