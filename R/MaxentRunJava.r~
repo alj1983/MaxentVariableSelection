@@ -1,0 +1,10 @@
+MaxentrunJava <-
+    function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs){
+        mxe <- .jnew("mebridge")
+        
+        str <- .jcall(mxe, "S", "fit", c("autorun", "-o", outdir,
+                                         "-j", gridfolder,
+                                         "-s", occurrencesites,
+                                         "-e", backgroundsites,
+                                         additionalargs))
+    }

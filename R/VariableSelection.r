@@ -60,7 +60,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
         
         
         while(length(already.tested.variables)<length(variablenames)){
-            cat("Number of remaining variables",length(variablenames),"\n")
+            cat("\n","Number of remaining variables",length(variablenames),"\n")
             cat("Testing variable contributions...","\n")
                                         # As long as there are still
                                         # important variables for
@@ -200,6 +200,13 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
                                             # AUC.Test (maximum)
                                             # values
 
+    ModelSelectionVisualization(outdir=outdir) # Create plots that
+                                               # show the range of
+                                               # AICc and AUC.Test
+                                               # values for a range of
+                                               # betamultipliers and
+                                               # number of Variables
+
                                         # List all files that were created in the outdir folder.
     all.outfiles <- list.files(outdir)
                                         # Remove the filenames from this list that shall remain
@@ -210,6 +217,10 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
     all.outfiles <- all.outfiles[all.outfiles!="Occurrencedata.csv_VariableSubset.csv"]
     all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMaxAUCTest.txt"]       
     all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMinAICc.txt"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelSelectionAICc_MarkedMinAICc.png"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelSelectionAUCTest_MarkedMinAICc.png"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelSelectionAICc_MarkedMaxAUCTest.png"]
+    all.outfiles <- all.outfiles[all.outfiles!="ModelSelectionAUCTest_MarkedMaxAUCTest.png"]
                                         # remove all the unneccessary output files
     setwd(outdir)
     file.remove(all.outfiles)
