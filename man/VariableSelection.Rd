@@ -404,13 +404,3 @@ coefficientthreshold, betamultiplier)
 xx create also a vignette.
 XX Rename lowerexclusionthreshold to contributionthreshold and
 coefficientthreshold to correlationthreshold in all files.
-
-
-
-XX I use system 'cp' in the VariableSelection function. This will not
-work on windows.
-
-Need to change in the Variable selection function which tables to
-keep. Change Occurrencesites.csv to
-paste(occurrencesitefilename,"_VariableSubset.csv",sep="")
-and keep also the Backgroundsites_VariableSubset.csv file.

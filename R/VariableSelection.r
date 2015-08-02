@@ -35,8 +35,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
         backgroundsitefilename <- gsub(".*/","",backgroundsites)
         
                                         #  Make a copy of the occurrence and backgroundsites in order not to overwrite the original files
-        system(paste("cp", occurrencesites, paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep=""),sep=" "))
-        system(paste("cp", backgroundsites, paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep=""),sep=" "))
+        file.copy(from=occurencesites,to= paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep=""))
+        file.copy(from=backgroundsites,to= paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep=""))
         
         occurrencesites <- paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep="")
         backgroundsites <- paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep="")
