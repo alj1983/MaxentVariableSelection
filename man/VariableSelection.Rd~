@@ -1,8 +1,11 @@
-\name{D.Jost-and-Gst.Nei}
-\alias{D.Jost}
-\alias{Gst.Nei}
-\title{Comparing Populations - Differentiation and Fixation Indices}
+\name{VariableSelection}
+\alias{VariableSelection}
+\title{Selecting the best set of environmental variables for MAXENT Niche Modeling}
 \description{
+
+  %% How do I define the 'best set'?
+  
+  
 The degree of genetic differentiation between populations is often
 measured by the fixation index Gst (Nei, 1973). However, differentiation at
 polymorphic loci with more than 2 alleles is much better reflected by the D value
