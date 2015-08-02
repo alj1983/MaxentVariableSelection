@@ -7,7 +7,7 @@ ExtractVariables <- function(uncorrelated.variables,occurrencesites,backgroundsi
                                         # important variable and that
                                         # have a model contribution
                                         # above
-                                        # lowerexclusionthreshold
+                                        # contributionthreshold
 Original.occurrencetable <- read.csv(occurrencesites,header=TRUE)
 
 Original.backgroundtable <- read.csv(backgroundsites,header=TRUE)

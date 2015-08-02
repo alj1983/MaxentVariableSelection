@@ -1,4 +1,4 @@
-VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites2,additionalargs,lowerexclusionthreshold,coefficientthreshold,betamultiplier){
+VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites2,additionalargs,contributionthreshold,correlationthreshold,betamultiplier){
     library("raster")
     dir.create(outdir)
     occurrencesites <- occurrencesites2
@@ -138,7 +138,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             cat(c("Contributions",modelnumber,b,matching.variables,"\n"), file = paste(outdir,"/VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
             
                                         # selecting the set of variables that exceed a user-defined contribution threshold
-            selected.variables <- variablecontributions[,variablecontributions>lowerexclusionthreshold]
+            selected.variables <- variablecontributions[,variablecontributions>contributionthreshold]
             
                                         # the names of selected variables
             variablenames <- colnames(selected.variables)
@@ -159,7 +159,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
             already.tested.variables <- c(already.tested.variables,important.notyettested.variable)
                                         # Getting a list with  correlation coefficients of all selected variables and the names of uncorrelated variables
             cat("Testing correlations between relevant variables...","\n")
-            correlations <- Correlations(important.notyettested.variable,variablenames,backgroundsites,coefficientthreshold)
+            correlations <- Correlations(important.notyettested.variable,variablenames,backgroundsites,correlationthreshold)
             
                                         # Extracting the correlation coefficients for the set of all environmental variables
             matching.correlations <- numeric(length(beginningvariableset))

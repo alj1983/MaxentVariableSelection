@@ -10,11 +10,11 @@ occurrencesites="../../20150401_Fd_WithOslo_e_r.csv"
 backgroundsites="../../20150401_BackgroundPoints_e_r.csv"
 additionalargs="-b 0.5 nolinear noquadratic noproduct nothreshold -a 'raw' -z autorun"
 
-coefficientthreshold <- 0.9
-lowerexclusionthreshold <- 5
+correlationthreshold <- 0.9
+contributionthreshold <- 5
 
 # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'                                        
-VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold){
+VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,contributionthreshold,correlationthreshold){
 
                                         # Extracting the set of variables of the original csv table
     beginningvariableset <- colnames(read.csv(occurrencesites,header=TRUE))
@@ -75,7 +75,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         cat(c("Contributions",matching.variables,"\n"), file = paste(outdir,"VariableSelectionProcess.txt",sep=""), sep = "\t", fill = FALSE, labels = NULL, append = TRUE)
         
                                         # selecting the set of variables that exceed a user-defined contribution threshold
-        selected.variables <- variablecontributions[,variablecontributions>lowerexclusionthreshold]
+        selected.variables <- variablecontributions[,variablecontributions>contributionthreshold]
         
                                         # the names of selected variables
         variablenames <- colnames(selected.variables)
@@ -97,7 +97,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
         already.tested.variables <- c(already.tested.variables,important.notyettested.variable)
         
                                         # Getting a list with  correlation coefficients of all selected variables and the names of uncorrelated variables
-        correlations <- Correlations(important.notyettested.variable,variablenames,backgroundsites,coefficientthreshold)
+        correlations <- Correlations(important.notyettested.variable,variablenames,backgroundsites,correlationthreshold)
         
                                         # Extracting the correlation coefficients for the set of all environmental variables
         matching.correlations <- numeric(length(beginningvariableset))
@@ -142,7 +142,7 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
             # Getting a list with correlation
             # coefficients of all selected variables and the names of
             # uncorrelated variables
-            correlations <- Correlations(v,uncorrelated.variables,backgroundsites,coefficientthreshold)
+            correlations <- Correlations(v,uncorrelated.variables,backgroundsites,correlationthreshold)
                                         # Extracting the correlation coefficients for the set of all environmental variables
             matching.correlations <- numeric(length(beginningvariableset))
             matching.correlations[matching.correlations==0] <- NA
@@ -172,4 +172,4 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites,backgroun
 
 
 
-VariableSelection(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,lowerexclusionthreshold,coefficientthreshold)
+VariableSelection(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs,contributionthreshold,correlationthreshold)

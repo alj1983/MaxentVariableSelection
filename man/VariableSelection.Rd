@@ -14,8 +14,8 @@ models (assessed by the area under the receiver operating characteristic
 \usage{
 
 VariableSelection(maxent, outdir, gridfolder, occurrencesites,
-backgroundsites, additionalargs, lowerexclusionthreshold,
-coefficientthreshold, betamultiplier)
+backgroundsites, additionalargs, contributionthreshold,
+correlationthreshold, betamultiplier)
 
 }
 \arguments{
@@ -51,7 +51,7 @@ coefficientthreshold, betamultiplier)
   Maxent) to 15 or so, will help you to spot the optimal beta multiplier
   for your specific model.
 	      }
-	        \item{coefficientthreshold}{Numerical value (between 0
+	        \item{correlationthreshold}{Numerical value (between 0
   and 1) that sets the threshold of Pearson's correlation coefficient above
   which environmental variables are regarded to be correlated (based on
 	      values at all background locations). Of the
@@ -63,7 +63,7 @@ coefficientthreshold, betamultiplier)
    overpredicted models. Also, models comiled with correlated variables might give wrong predictions in scenarios where the
    correlations between the variables differ.
  }
-		  \item{lowerexclusionthreshold}{Numerical value
+		  \item{contributionthreshold}{Numerical value
   (between 0 and 100) that sets the threshold of model contributions
   below which environmental variables are excluded from the Maxent
 	      model. Model contributions reflect the importance of
@@ -150,16 +150,16 @@ test/train partitions with each new run.\cr
 First, an initial MAXENT model is compiled with all provided
 environmental variables. Then, all variables are excluded which have a
 relative contribution score below the value set with
-\code{lowerexclusionthreshold}. Then, those variables are removed that
+\code{contributionthreshold}. Then, those variables are removed that
 corrleate with the variable of highest contribution (at a correlation
-coefficient > \code{coefficientthreshold} or <
--\code{coefficientthreshold}).  The remaining set of variables is then
+coefficient > \code{correlationthreshold} or <
+-\code{correlationthreshold}).  The remaining set of variables is then
 used to compile a new MAXENT model. Again, variables with low
 contribution scores are removed and remaining variables that are
 correlated to the variable of second-highest contribution are
 discarded. This process is repeated until left with a set of
 uncorrelated variables that all had a model contribution above the value
-set with \code{lowerexclusionthreshold}.  These steps are perfored for
+set with \code{contributionthreshold}.  These steps are perfored for
 the range of beta-multipliers specified with \code{betamultiplier}.
 
 
@@ -389,18 +389,21 @@ additionalargs="nolinear noquadratic noproduct nothreshold noautofeature"
 % multipliers 4 and 4.5, 5, 5.5, and 6.
 betamultiplier=seq(4,6.5,0.5)
 
-coefficientthreshold <- 0.9
+correlationthreshold <- 0.9
 
-lowerexclusionthreshold <- 5
+contributionthreshold <- 5
 
 VariableSelection(maxent, outdir, gridfolder, occurrencesites,
-backgroundsites, additionalargs, lowerexclusionthreshold,
-coefficientthreshold, betamultiplier)
+backgroundsites, additionalargs, contributionthreshold,
+correlationthreshold, betamultiplier)
 
 
 }
 \keyword{nonparametric}
 
 xx create also a vignette.
-XX Rename lowerexclusionthreshold to contributionthreshold and
-coefficientthreshold to correlationthreshold in all files.
+XX Rename contributionthreshold to contributionthreshold and
+correlationthreshold to correlationthreshold in all files.
+
+xx sed -i -- 's/lowerexclusionthreshold/contributionthreshold/g' *
+xx sed -i -- 's/contributionthreshold/correlationthreshold/g' *
