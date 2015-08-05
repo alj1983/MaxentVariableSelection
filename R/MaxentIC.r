@@ -14,7 +14,7 @@ MaxentIC <- function(csvfile, grdfile, lambdasfile) {
     nparams <- nrow(lambdases[lambdases$V2 != 0, ])
     nparams = nparams - 4
     
-    layerRaw <- raster(grdfile)
+    layerRaw <- raster::raster(grdfile)
     probsum <- cellStats(layerRaw, sum)
     
     points <- read.csv(csvfile)

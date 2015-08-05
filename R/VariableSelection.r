@@ -1,5 +1,4 @@
 VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites2,additionalargs,contributionthreshold,correlationthreshold,betamultiplier){
-    library("raster")
     dir.create(outdir)
     occurrencesites <- occurrencesites2
     backgroundsites <- backgroundsites2
