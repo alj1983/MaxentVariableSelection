@@ -4,8 +4,7 @@ Title:Selecting the best set of relevant environmental variables along
   with the optimal regularization multiplier for MAXENT Niche Modeling
 Version: 1.0-0
 Date: 2015-08-15
-Author: Alexander Jueterbock
-Maintainer: Alexander-Jueterbock@web.de
+Authors@R: person("Alexander", "Jueterbock", email = "Alexander-Jueterbock@web.de", role = c(" aut", "cre"))
 Description: Complex niche models show low performance in identifying
     the most important range-limiting environmental variables and in
     transferring habitat suitability to novel environmental conditions
@@ -18,8 +17,7 @@ Description: Complex niche models show low performance in identifying
     (Fielding and Bell, 1997). Users of this package should be familiar with
     MAXENT niche modelling. 
 License: GPL (>= 2)
-Imports: ggplot2, raster
+Imports: ggplot2, raster (>2.3-40)
 Depends: R (>= 3.1.2)
-SystemRequirements:
-    maxent.jar file
+SystemRequirements: maxent.jar file
 LazyData: true
