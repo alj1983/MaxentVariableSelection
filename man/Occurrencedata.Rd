@@ -1,28 +1,41 @@
-\name{Example.untransformed}
-\alias{Example.untransformed}
+\name{Backgrounddata}
+\alias{Backgrounddata}
 \docType{data}
-\title{Allelic Data of Three Populations for Three Loci}
+\title{CSV file with occurrence data}
 \description{
-The data set gives the fragment lengths (in base pairs) for three loci and three populations.
-}
+Longitude and latitude
+values, as well as values of four environmental variables (from the Bio-ORACLE dataset;
+  Tyberghein et al., 2012) for each of 98 occurrence sites (locations where a species was recorded).}
 \usage{
-data(Example.untransformed)
+backgroundsites <- system.file("extdata", "Occurrenceddata.csv",
+package="RpackageVariableSelection")
+
+% should be used as input argument to the 'VariableSelection' function.
 }
 \format{
-  A data frame with 216 observations on the following 8 variables.
+  A data frame that specifies geographic
+  locations and environmental conditions of 98 occurrence sites.}
   \describe{
-    \item{\code{individual}}{a factor with each individual representing one level}
-    \item{\code{population}}{a factor with levels \code{population1},
-      \code{population2}, \code{population3}}
-    \item{\code{locus1.allele1}}{a numeric vector listing the base pairs of the first allele of locus1}
-    \item{\code{locus1.allele2}}{a numeric vector listing the base pairs of the second allele of locus1}
-    \item{\code{locus2.allele1}}{a numeric vector listing the base pairs of the first allele of locus2}
-    \item{\code{locus2.allele2}}{a numeric vector listing the base pairs of the second  allele of locus2}
-    \item{\code{locus3.allele1}}{a numeric vector listing the base pairs of the first allele of locus3}
-    \item{\code{locus3.allele2}}{a numeric vector listing the base pairs of the second  allele of locus3}
-  }}
+    \item{\code{species}}{The species name is here set to 'bg', which
+      stands for background}
+    \item{\code{longitude}}{longitudinal coordinate}
+    \item{\code{latitude}}{latitudinal coordinate}
+    \item{\code{calcite}}{Mean calcite concentration (mol/m3)}
+    \item{\code{parmean}}{Mean photosynthetically active radiation (Einstein/m2/day)}
+    \item{\code{salinity}}{Mean salinity (PSS)}
+    \item{\code{sstmax}}{Maximum sea surface temperature (degree celsius)}    
+  }
+}
 \examples{
-data(Example.untransformed)
-Example.untransformed
+occurrencesites <- system.file("extdata", "Occurrencedata.csv",
+package="RpackageVariableSelection")
+occurrencesites <- read.csv(occurrencesites,header=TRUE)
+head(occurrencesites)
 }
 \keyword{datasets}
+\references{
+Tyberghein L, Verbruggen H, Pauly K, Troupin C, Mineur F \& {De Clerck},
+O (2012)\cr
+Bio-ORACLE: a global environmental dataset for marine species distribution modelling\cr
+\emph{Global Ecology and Biogeography} \bold{21}:2 272--281.
+}

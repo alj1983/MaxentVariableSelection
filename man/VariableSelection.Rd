@@ -1,16 +1,17 @@
 \name{VariableSelection}
 \alias{VariableSelection}
-\title{Selecting the best set of relevant environmental variables for MAXENT Niche Modeling}
-\description{
-Complex niche models show low performance in identifying the most
-important range-limiting environmental variables and in transferring
-habitat suitability to novel environmental conditions. This package
-helps to identify the most important set of uncorrelated variables and
-to fine-tune Maxent's regularization multiplier. In combination, this
-allows to constrain complexity and increase perforance of Maxent niche
-models (assessed by the area under the receiver operating characteristic
-(AUC) and information criteria as AICc).
-%% ~~ A concise (1-5 lines) description of what the function does. ~~ }
+\title{Selecting the best set of relevant environmental variables along
+  with the optimal regularization multiplier for MAXENT Niche Modeling}
+
+\description{ This is the core function of the package in which a set of
+environmental variables is reduced in a stepwise fashion in order to
+avoid overfitting the model to the occurrence records. This can be
+done for a range of regularization multipliers. The best performing
+model, based on AICc values (Akaike, 1974) or AUC.Test values (Fielding
+and Bell, 1997), identifies then the most-important uncorrelated
+environmental variables along with the optimal regularization
+multiplier.
+}
 \usage{
 
 VariableSelection(maxent, outdir, gridfolder, occurrencesites,
@@ -399,11 +400,3 @@ correlationthreshold, betamultiplier)
 
 
 }
-\keyword{nonparametric}
-
-xx create also a vignette.
-XX Rename contributionthreshold to contributionthreshold and
-correlationthreshold to correlationthreshold in all files.
-
-xx sed -i -- 's/lowerexclusionthreshold/contributionthreshold/g' *
-xx sed -i -- 's/contributionthreshold/correlationthreshold/g' *

@@ -1,27 +1,32 @@
-\name{DEMEtics-package}
-\alias{DEMEtics}
+\name{MaxentVariableSelection-package}
+\alias{MaxentVariableSelection}
 \docType{package}
-\title{
-Evaluating the genetic differentiation between populations based on Gst and D values.
-}
-\description{
-This package allows to calculate the fixation index Gst
-(Nei, 1973) and the differentiation index D (Jost, 2008) pairwise
-between or averaged over several populations.  P-values, stating the
-significance of differentiation, and 95 percent confidence intervals
-can be estimated using bootstrap resamplings. In the case that more
-than two populations are compared pairwise, the p-values are
-adjusted by bonferroni correction and in several other ways due to
-the multiple comparison from one data set.
-}
+\title{Selecting the best set of relevant environmental variables along
+  with the optimal regularization multiplier for MAXENT Niche Modeling}
+
+\description{Complex niche models show low performance in identifying
+the most important range-limiting environmental variables and in
+transferring habitat suitability to novel environmental conditions
+(Warren and Seifert, 2011; Warren et al., 2014). This package helps to
+identify the most important set of uncorrelated variables and to
+fine-tune Maxent's regularization multiplier. In combination, this
+allows to constrain complexity and increase perforance of Maxent niche
+models (assessed by information criteria, such as AICc (Akaike, 1974) ,
+and by the area under the receiver operating characteristic (AUC)
+(Fielding and Bell, 1997). Users of this package should be familiar with
+MAXENT niche modelling. This \href{https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CB4QFjAAahUKEwik2uzIkJDHAhVHmIAKHRmuB-0&url=https%3A%2F%2Fwww.cs.princeton.edu%2F~schapire%2Fmaxent%2Ftutorial%2Ftutorial.doc&ei=FA7BVaSAKsewggSZ3J7oDg&usg=AFQjCNGLRzLmkwCWYL3VM30dFpe3QBLSbQ&sig2=WApol3w6L1uA9h2nuHR7Zw&bvm=bv.99261572,d.eXY}{MAXENT Tutorial} provides a great
+introduction and overview. }
+
 \details{
 \tabular{ll}{
-Package: \tab DEMEtics\cr
+Package: \tab MaxentVariableSelection\cr
 Type: \tab Package\cr
-Version: \tab 0.8-4\cr
-Date: \tab 2011-10-24\cr
-Depends: \tab R (>= 2.8.0)\cr
+Version: \tab 1.0-0\cr
+Date: \tab 2015-08-15\cr
+Depends: \tab R (>= 3.1.2)\cr
+Imports: \tab ggplot2, raster\cr
 License: \tab GPL (>= 2)\cr
+# XX 20150804ContinueHere
 Literature:
 \tab Gerlach G., Jueterbock A., Kraemer P., Deppermann J. and Harmand P. 2010\cr
 \tab Calculations of population differentiation based on Gst and D:\cr 
@@ -70,7 +75,7 @@ Example.untransformed   Allelic Data of Three Populations for Three
 }
 }
 \author{
-Alexander Jueterbock, Philipp Kraemer, Gabriele Gerlach and Jana Deppermann
+Alexander Jueterbock
 
 Maintainer: Alexander Jueterbock, <Alexander-Jueterbock@web.de> }
 

@@ -1,6 +1,4 @@
 ModelSelectionVisualization <- function(outdir){
-    library (ggplot2)
-    
                                         # Loading the model performance tables
     
     ModelPerformances <- read.table(paste(outdir,"/ModelPerformance.txt",sep=""), header=TRUE, stringsAsFactors=FALSE)
@@ -27,7 +25,7 @@ ModelSelectionVisualization <- function(outdir){
     png(filename = paste(outdir,"/ModelSelectionAICc_MarkedMinAICc.png",sep=""), height=120, width=250, units="mm", pointsize=12, res=600)
     
     print(
-        ggplot(ModelPerformances,aes(betamultiplier,AICc,size=log(variables),colour=variables))+
+        ggplot2::ggplot(ModelPerformances,aes(betamultiplier,AICc,size=log(variables),colour=variables))+
             geom_point(data=ModelPerformances.bestsets,colour="red")+
                 geom_point(data=ModelPerformances.bestsets,colour="red",shape=1,size=8)+
                     geom_point()+
@@ -48,7 +46,7 @@ ModelSelectionVisualization <- function(outdir){
     png(filename = paste(outdir,"/ModelSelectionAUCTest_MarkedMinAICc.png",sep=""), height=120, width=250, units="mm", pointsize=12, res=600)
     
     print(
-        ggplot(ModelPerformances,aes(betamultiplier,AUC.Test,size=log(variables),colour=variables))+
+        ggplot2::ggplot(ModelPerformances,aes(betamultiplier,AUC.Test,size=log(variables),colour=variables))+
             geom_point()+
                 geom_point(data=ModelPerformances.bestsets,colour="red")+
                     geom_point(data=ModelPerformances.bestsets,colour="red",shape=1,size=8)+
@@ -90,7 +88,7 @@ ModelSelectionVisualization <- function(outdir){
     png(filename = paste(outdir,"/ModelSelectionAICc_MarkedMaxAUCTest.png",sep=""), height=120, width=250, units="mm", pointsize=12, res=600)
     
     print(
-        ggplot(ModelPerformances,aes(betamultiplier,AICc,size=log(variables),colour=variables))+
+        ggplot2::ggplot(ModelPerformances,aes(betamultiplier,AICc,size=log(variables),colour=variables))+
             geom_point(data=ModelPerformances.bestsets,colour="red")+
                 geom_point(data=ModelPerformances.bestsets,colour="red",shape=1,size=8)+
                     geom_point()+
@@ -111,7 +109,7 @@ ModelSelectionVisualization <- function(outdir){
     png(filename = paste(outdir,"/ModelSelectionAUCTest_MarkedMaxAUCTest.png",sep=""), height=120, width=250, units="mm", pointsize=12, res=600)
     
     print(
-        ggplot(ModelPerformances,aes(betamultiplier,AUC.Test,size=log(variables),colour=variables))+
+        ggplot2::ggplot(ModelPerformances,aes(betamultiplier,AUC.Test,size=log(variables),colour=variables))+
             geom_point()+
                 geom_point(data=ModelPerformances.bestsets,colour="red")+
                     geom_point(data=ModelPerformances.bestsets,colour="red",shape=1,size=8)+
