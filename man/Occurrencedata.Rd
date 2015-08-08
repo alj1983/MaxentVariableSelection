@@ -1,20 +1,21 @@
-\name{Backgrounddata}
-\alias{Backgrounddata}
+\name{Occurrencedata}
+\alias{Occurrencedata}
 \docType{data}
 \title{CSV file with occurrence data}
 \description{
-Longitude and latitude
-values, as well as values of four environmental variables (from the Bio-ORACLE dataset;
-  Tyberghein et al., 2012) for each of 98 occurrence sites (locations where a species was recorded).}
+  Longitude and latitude
+  values, as well as values of four environmental variables (from the Bio-ORACLE dataset;
+  Tyberghein et al., 2012) for each of 98 occurrence sites (locations
+  where a species was recorded).
+}
 \usage{
 backgroundsites <- system.file("extdata", "Occurrenceddata.csv",
 package="RpackageVariableSelection")
-
 % should be used as input argument to the 'VariableSelection' function.
 }
 \format{
   A data frame that specifies geographic
-  locations and environmental conditions of 98 occurrence sites.}
+  locations and environmental conditions of 98 occurrence sites.
   \describe{
     \item{\code{species}}{The species name is here set to 'bg', which
       stands for background}

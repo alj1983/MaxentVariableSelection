@@ -60,8 +60,6 @@ Literature:
 \tab Adjusted p-values for simultaneous inference.\cr
 \tab \emph{Biometrics} \bold{48}, 1005--1013.\cr
 LazyLoad: \tab yes\cr
-Packaged: \tab 2010-12-18 13:48:33 UTC; alexj\cr
-Built: \tab R 2.10.1; ; 2010-12-18 13:48:39 UTC; unix\cr
 }
 
 Index:

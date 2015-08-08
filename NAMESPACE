@@ -1,2 +1,1 @@
-import("raster") 
-exportPattern(VariableSelection)
+export(VariableSelection)
