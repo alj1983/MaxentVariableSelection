@@ -213,8 +213,6 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencelocations,backg
     all.outfiles <- all.outfiles[all.outfiles!="ModelPerformance.txt"]
     all.outfiles <- all.outfiles[all.outfiles!="ModelWithMaxAUCTest.txt"]
     all.outfiles <- all.outfiles[all.outfiles!="ModelWithMinAICc.txt"]                  
-    all.outfiles <- all.outfiles[all.outfiles!=paste(occurrencesitefilename,"_VariableSubset.csv",sep="")]
-    all.outfiles <- all.outfiles[all.outfiles!=paste(backgroundsitefilename,"_VariableSubset.csv",sep="")]
     all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMaxAUCTest.txt"]       
     all.outfiles <- all.outfiles[all.outfiles!="VariableSelectionMinAICc.txt"]
     all.outfiles <- all.outfiles[all.outfiles!="ModelSelectionAICc_MarkedMinAICc.png"]

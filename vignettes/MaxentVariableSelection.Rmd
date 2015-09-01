@@ -388,12 +388,8 @@ with the following setting:
 ## Variable selection procedure
 
 With the argument seetings that we specified above, we can start the
-variable selection. The run will take a while, so it is better to
-start it in the evening and let it run over night. The resulting
-output files will be saved in the folder that you specified in the
-argument `outdir`.
-
-The following function starts the model-selection procedure
+variable selection.  The following function starts the model-selection
+procedure
 
 ```{r, eval=FALSE}
 library("MaxentVariableSelection")
@@ -408,6 +404,10 @@ VariableSelection(maxent,
                   betamultiplier
                   )
 ```
+
+The run will take a while (ca. half an hour).  The resulting output
+files will be saved in the folder that you specified in the argument
+`outdir`.
 
 The following paragraphs explain what steps are actually taken in this
 procedure to identify the set of most relevant environmental
@@ -457,10 +457,56 @@ results of the `VariableSelection` functions gives you both options).
 # Results
 
 The results are saved in the directory that was specified in the
-argument `outdir`. If you were patient enough to wait for the
-variables selection with our sample settings (see above) to finish,
-you will find seven tables and four figures in the output directory.
+argument `outdir`. If you were patient enough to wait for the example
+variable selection to finish (see above), you will find seven tables
+and four figures in the output directory.
 
+ModelPerformance.txt
+A table listing the performance indicators of all created Maxent models
+
+ModelWithMaxAUCTest.txt
+Subset of the table ModelPerformance.txt,
+
+ModelWithMinAICc.txt
+Subset of the table ModelPerformance.txt, which shows only the model with
+the lowest AICc value.
+
+
+X_VariableSubset.csv
+occurrencelocations and backgroundlocations input files reduced to the
+final set of selected environmental variables.
+XX  But based on AICc or AUC? Specify this also in the vignette
+
+
+VariableSelectionProcess.txt
+Table listing model contributions for and correlations between each of the envi-
+ronmental variables for all created Maxent models.
+
+VariableSelectionMaxAUCTest.txt
+Subset of VariableSelectionProcess.txt that shows only those models which
+lead directly to the model with the highest AUC.Test value.
+
+VariableSelectionMinAICc.txt
+Subset of VariableSelectionProcess.txt that shows only those models which
+lead directly to the model with the lowest AICc value.
+
+
+
+
+
+ModelSelectionAICc_MarkedMaxAUCTest.png
+A figure showing the AICc values of all models, which are ordered along the
+x-axis based on the applied beta-multiplier.
+
+ModelSelectionAICc_MarkedMinAICc.png
+A figure showing the AICc values of all models, which are ordered along the
+x-axis based on the applied beta-multiplier.
+
+ModelSelectionAUCTest_MarkedMaxAUCTest.png
+A figure showing the AUC.Test values of all models, which are ordered along
+the x-axis based on the applied beta-multiplier.
+
+Describe the example results here now
 
 Explain why tohe maximum number of variables is four and why not all
 of the given variables are taken for modelling (because they are not

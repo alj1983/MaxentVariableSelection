@@ -255,20 +255,6 @@ correlationthreshold, betamultiplier)
   }
   
   
-  \item{X_VariableSubset.csv}{
-    \code{occurrencelocations} and \code{backgroundlocations} input files reduced to
-    the final set of selected environmental variables. 'X' stands for the
-    input file names of the csv files with occurrence and background data.
-    \describe{
-      \item{\code{species}}{species name}
-      \item{\code{longitude}}{longitude coordinate}
-      \item{\code{latitude}}{latitude coordinate}
-      \item{\code{X}}{values for each of the environmental variables that
-	were selected as optimal set. Here, 'X' stands for the name of one
-	or more input variables.}
-    }
-  }
-  
   \item{VariableSelectionProcess.txt}{Table listing model contributions for
     and correlations between each of the environmental variables for all
     created Maxent models. The numbers of the models refer to the unique
