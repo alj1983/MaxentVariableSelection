@@ -1,7 +1,7 @@
-VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgroundsites2,additionalargs,contributionthreshold,correlationthreshold,betamultiplier){
+VariableSelection <- function(maxent,outdir,gridfolder,occurrencelocations,backgroundlocations,additionalargs,contributionthreshold,correlationthreshold,betamultiplier){
     dir.create(outdir)
-    occurrencesites <- occurrencesites2
-    backgroundsites <- backgroundsites2
+    occurrencesites <- occurrencelocations
+    backgroundsites <- backgroundlocations
     
                                         # the first three columns in the input tables must have the header 'species','longitude', and 'latitude'
     
@@ -25,8 +25,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
     for (b in betamultiplier){
         cat("----------------------- ","\n")
         cat("Choosing betamultiplier ", b,"\n")
-        occurrencesites <- occurrencesites2
-        backgroundsites <- backgroundsites2
+        occurrencesites <- occurrencelocations
+        backgroundsites <- backgroundlocations
 
         
                                         # Extract only the name and strip off the filepath from the occurrence and background site files
@@ -34,8 +34,8 @@ VariableSelection <- function(maxent,outdir,gridfolder,occurrencesites2,backgrou
         backgroundsitefilename <- gsub(".*/","",backgroundsites)
         
                                         #  Make a copy of the occurrence and backgroundsites in order not to overwrite the original files
-        file.copy(from=occurencesites,to= paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep=""))
-        file.copy(from=backgroundsites,to= paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep=""))
+        file.copy(from=occurrencesites,to= paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep=""),overwrite=TRUE)
+        file.copy(from=backgroundsites,to= paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep=""),overwrite=TRUE)
         
         occurrencesites <- paste(outdir,"/",occurrencesitefilename,"_VariableSubset.csv",sep="")
         backgroundsites <- paste(outdir,"/",backgroundsitefilename,"_VariableSubset.csv",sep="")

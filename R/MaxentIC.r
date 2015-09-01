@@ -15,11 +15,11 @@ MaxentIC <- function(csvfile, grdfile, lambdasfile) {
     nparams = nparams - 4
     
     layerRaw <- raster::raster(grdfile)
-    probsum <- cellStats(layerRaw, sum)
+    probsum <- raster::cellStats(layerRaw, sum)
     
     points <- read.csv(csvfile)
     npoints <- nrow(points)
-    layerValues <- extract(layerRaw, points[, c("longitude", "latitude")])
+    layerValues <- raster::extract(layerRaw, points[, c("longitude", "latitude")])
     loglikelihood <- sum(log(layerValues / probsum))
     
     if (nparams >= npoints - 1) {

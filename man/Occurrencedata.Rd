@@ -3,16 +3,14 @@
 \docType{data}
 \title{CSV file with occurrence data}
 \description{
-  Longitude and latitude
-  values, as well as values of four environmental variables (from the Bio-ORACLE dataset;
+  Longitude and latitude values, as well as values of four environmental variables (from the Bio-ORACLE dataset;
   Tyberghein et al., 2012) for each of 98 occurrence sites (locations
   where a species was recorded).
 }
-\usage{
-backgroundsites <- system.file("extdata", "Occurrenceddata.csv",
-package="RpackageVariableSelection")
+%\usage{
+%occurrencelocations <- system.file("extdata", "Occurrencedata.csv", package="MaxentVariableSelection")
 % should be used as input argument to the 'VariableSelection' function.
-}
+%}
 \format{
   A data frame that specifies geographic
   locations and environmental conditions of 98 occurrence sites.
@@ -28,14 +26,13 @@ package="RpackageVariableSelection")
   }
 }
 \examples{
-occurrencesites <- system.file("extdata", "Occurrencedata.csv",
-package="RpackageVariableSelection")
-occurrencesites <- read.csv(occurrencesites,header=TRUE)
-head(occurrencesites)
+occurrencelocations <- system.file("extdata", "Occurrencedata.csv", package="MaxentVariableSelection")
+occurrencelocations <- read.csv(occurrencelocations,header=TRUE)
+head(occurrencelocations)
 }
 \keyword{datasets}
 \references{
-Tyberghein L, Verbruggen H, Pauly K, Troupin C, Mineur F \& {De Clerck},
+Tyberghein L, Verbruggen H, Pauly K, Troupin C, Mineur F and {De Clerck},
 O (2012)\cr
 Bio-ORACLE: a global environmental dataset for marine species distribution modelling\cr
 \emph{Global Ecology and Biogeography} \bold{21}:2 272--281.

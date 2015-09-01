@@ -2,7 +2,6 @@ Maxentrun <-
 function(maxent,outdir,gridfolder,occurrencesites,backgroundsites,additionalargs){
 
      system(paste("java -jar", maxent,
-      "autorun",            
       "-o", outdir,
       "-j", gridfolder,
       "-s", occurrencesites,

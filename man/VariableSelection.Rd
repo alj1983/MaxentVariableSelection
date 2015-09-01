@@ -1,9 +1,9 @@
 \name{VariableSelection}
 \alias{VariableSelection}
 \title{Selecting the best set of relevant environmental variables along
-  with the optimal regularization multiplier for MAXENT Niche Modeling}
+  with the optimal regularization multiplier for Maxent Niche Modeling}
 
-\description{ This is the core function of the package in which a set of
+\description{This is the core function of the package in which a set of
   environmental variables is reduced in a stepwise fashion in order to
   avoid overfitting the model to the occurrence records. This can be
   done for a range of regularization multipliers. The best performing
@@ -14,24 +14,27 @@
 }
 \usage{
 
-VariableSelection(maxent, outdir, gridfolder, occurrencesites,
-backgroundsites, additionalargs, contributionthreshold,
+VariableSelection(maxent, outdir, gridfolder, occurrencelocations,
+backgroundlocations, additionalargs, contributionthreshold,
 correlationthreshold, betamultiplier)
 
 }
 \arguments{
   \item{maxent}{String specifying the filepath to the maxent.jar file (download from here: https://www.cs.princeton.edu/~schapire/maxent/). The package was tested with maxent.jar version 3.3.3k.
   }
-  \item{outdir}{String specifying the path to the output directory to which all the result files will be written.
+  \item{outdir}{String specifying the path to the output directory to
+    which all the result files will be written.Please don't put
+    important files in this folder as all files but the output files of
+    the VariableSelection function will be deleted from this folder.
   }
   \item{gridfolder}{String specifying the path to the directory that holds all the ASCII grids (in ESRI's
     .asc format) of environmental variables. All variables must have the same extent and resolution.
   }
-  \item{occurrencesites}{String specifying the filepath to the csv
+  \item{occurrencelocations}{String specifying the filepath to the csv
     file with occurrence records. Please find the exact specifications of
     the SWD file format in the details section below.
   }
-  \item{backgroundsites}{String specifying the filepath to the
+  \item{backgroundlocations}{String specifying the filepath to the
     csv file with background/pseudoabsence data. Please find the exact
     specifications of the SWD file format in the details section below.
   }
@@ -95,12 +98,12 @@ correlationthreshold, betamultiplier)
   environmental variables from ASCII rasters with the extract function of
   the R package 'raster' to create files of the SWD format. 
   
-  \bold{Additional MAXENT arguments}
+  \bold{Additional Maxent arguments}
   
-  MAXENT arguments can be specified with the \code{additionalargs} string.
+  Maxent arguments can be specified with the \code{additionalargs} string.
   You find an overview of possible arguments in the end of the help file
   that opens when you click the 'Help' button in the graphical user
-  interface of MAXENT (which can be opened with the command 'java -jar
+  interface of Maxent (which can be opened with the command 'java -jar
   maxent.jar' or by clicking on the maxent.jar file).
   
   The following settings are preset in this package to calculate
@@ -143,14 +146,14 @@ correlationthreshold, betamultiplier)
   
   \bold{Model selection procedure}
 
-  First, an initial MAXENT model is compiled with all provided
+  First, an initial Maxent model is compiled with all provided
   environmental variables. Then, all variables are excluded which have a
   relative contribution score below the value set with
   \code{contributionthreshold}. Then, those variables are removed that
   corrleate with the variable of highest contribution (at a correlation
   coefficient > \code{correlationthreshold} or <
   -\code{correlationthreshold}).  The remaining set of variables is then
-  used to compile a new MAXENT model. Again, variables with low
+  used to compile a new Maxent model. Again, variables with low
   contribution scores are removed and remaining variables that are
   correlated to the variable of second-highest contribution are
   discarded. This process is repeated until left with a set of
@@ -159,7 +162,7 @@ correlationthreshold, betamultiplier)
   the range of beta-multipliers specified with \code{betamultiplier}.
 
 
-  The performance of each MAXENT model is assessed with the sample-size-
+  The performance of each Maxent model is assessed with the sample-size-
   adjusted Akaike information criterion (AICc) (Akaike, 1974), the area
   under the receiver operating characteristic (AUC) estimated from test
   data (Fielding and Bell, 1997), and the difference between AUC values
@@ -253,7 +256,7 @@ correlationthreshold, betamultiplier)
   
   
   \item{X_VariableSubset.csv}{
-    \code{occurrencesites} and \code{backgroundsites} input files reduced to
+    \code{occurrencelocations} and \code{backgroundlocations} input files reduced to
     the final set of selected environmental variables. 'X' stands for the
     input file names of the csv files with occurrence and background data.
     \describe{
@@ -316,22 +319,22 @@ Akaike H (1974)\cr
 A new look at the statistical model identification\cr
 \emph{IEEE Transactions on Automatic Control} \bold{19}:6 716--723.
 
-Fielding AH \& Bell JF (1997)\cr
+Fielding AH and Bell JF (1997)\cr
 A review of methods for the assessment of prediction\cr
 errors in conservation presence/absence models\cr
 \emph{Environmental Conservation} \bold{24}:1 38--49.
 
-Jim\'{e}nez-Valverde A (2012)\cr
+Jimenez-Valverde A (2012)\cr
 Insights into the area under the receiver operating characteristic curve\cr
 (AUC) as a discrimination measure in species distribution modelling\cr
 \emph{Global Ecology and Biogeography} \bold{21}:4 498--507.
 
-Warren DL, Glor RE, \& Turelli M (2010)\cr
+Warren DL, Glor RE, and Turelli M (2010)\cr
 ENMTools: a toolbox for comparative studies of environmental niche
 models\cr
 \emph{Ecography} \bold{33}:3 607--611.
 
-Warren DL \& Seifert SN (2011)\cr
+Warren DL and Seifert SN (2011)\cr
 Ecological niche modeling in Maxent: the importance of model\cr
 complexity and the performance of model selection criteria\cr
 \emph{Ecological Applications} \bold{21}:2 335--342.
@@ -356,37 +359,44 @@ complexity and the performance of model selection criteria\cr
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-% change this to the location of the maxent.jar file on your own computer
+\dontrun{
+
+# change this to the location of the maxent.jar file on your own
+# computer. This file is not included in the package
+
 maxent <- system.file("extdata", "maxent.jar", 
-package="RpackageVariableSelection")
-% XX See in which  directory I should normally put the maxent.jar file
+package="MaxentVariableSelection")
 
 outdir="Test"
 
-gridfolder <- system.file("extdata/grids/",
-package="RpackageVariableSelection")
+# Because of the file size of variable grids, only one variable (sstmax)
+# is included in the package. Variable selection, however, only makes
+# sense when you have more variables available.
 
-occurrencesites <- system.file("extdata", "Occurrencedata.csv", 
-package="RpackageVariableSelection")
+gridfolder <- system.file("extdata/grids",
+package="MaxentVariableSelection")
 
-backgroundsites <- system.file("extdata", "Backgrounddata.csv", 
-package="RpackageVariableSelection")
+occurrencelocations <- system.file("extdata", "Occurrencedata.csv", 
+package="MaxentVariableSelection")
+
+backgroundlocations <- system.file("extdata", "Backgrounddata.csv", 
+package="MaxentVariableSelection")
 
 % unselect all but hinge features with the following additional
 % arguments
 additionalargs="nolinear noquadratic noproduct nothreshold noautofeature"
 
 % With the following selection, variable selection will run through the beta
-% multipliers 4 and 4.5, 5, 5.5, and 6.
+% multipliers 4, 4.5, 5, 5.5, 6, and 6.5.
 betamultiplier=seq(4,6.5,0.5)
 
 correlationthreshold <- 0.9
 
 contributionthreshold <- 5
 
-VariableSelection(maxent, outdir, gridfolder, occurrencesites,
-backgroundsites, additionalargs, contributionthreshold,
+VariableSelection(maxent, outdir, gridfolder, occurrencelocations,
+backgroundlocations, additionalargs, contributionthreshold,
 correlationthreshold, betamultiplier)
 
-
+}
 }

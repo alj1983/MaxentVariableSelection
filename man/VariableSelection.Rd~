@@ -1,6 +1,6 @@
 \name{VariableSelection}
 \alias{VariableSelection}
-\title{Selecting the best set of environmental variables for MAXENT Niche Modeling}
+\title{Selecting the best set of environmental variables for Maxent Niche Modeling}
 \description{
 
   %% How do I define the 'best set'?

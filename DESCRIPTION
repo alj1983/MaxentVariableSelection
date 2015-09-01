@@ -20,5 +20,7 @@ Description: Complex niche models show low performance in identifying
 License: GPL (>= 2)
 Imports: ggplot2, raster
 Depends: R (>= 3.1.2)
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 SystemRequirements: maxent.jar file
 LazyData: true
