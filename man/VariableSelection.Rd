@@ -74,115 +74,10 @@ correlationthreshold, betamultiplier)
 }
 
 \details{
-  \bold{SWD file format of occurrence and background sites}
-  
-  The files with occurrence sites and with background sites must be saved
-  in SWD format. This format contains not only longitude and latitude
-  values but also values of all environmental variables for each location.
-  The file should be saved in csv format, which means that values are
-  separated by commas. Here are some example lines from a file with
-  background sites, with the first line as header line:
-  
-  
-  \code{species,longitude,latitude,calcite,salinity,maxtemperature}\cr
-  \code{bg,39.79,65.29,0.008,34.577,10.28}\cr
-  \code{bg,21.12,79.54,0.014,22.214,1.28}\cr
-  \code{bg,-4.95,55.29,0.001,29.077,15.64}\cr
-  \code{bg,-135.37,59.29,0.006,31.59,12.05}\cr
-  \code{bg,18.04,42.62,0.001,33.575,25.93}\cr
-  \code{bg,-4.45,48.70,0.003,31.614,15.62}\cr
-  
-  Have also a look at the datasets \code{Backgrounddata} and \code{Occurrencedata}
-  that are included in this package. If you have longitude and latitude
-  data of your occurrence or background sites, you can extract values of
-  environmental variables from ASCII rasters with the extract function of
-  the R package 'raster' to create files of the SWD format. 
-  
-  \bold{Additional Maxent arguments}
-  
-  Maxent arguments can be specified with the \code{additionalargs} string.
-  You find an overview of possible arguments in the end of the help file
-  that opens when you click the 'Help' button in the graphical user
-  interface of Maxent (which can be opened with the command 'java -jar
-  maxent.jar' or by clicking on the maxent.jar file).
-  
-  The following settings are preset in this package to calculate
-  information criteria and AUC values. Don't change these values in the
-  \code{additionalargs} string:
-  
-  \code{autorun=true}: starts running with the startup of the program.\cr
-  \code{plots=false}: doesn't write any plots.\cr
-  \code{writeplotdata=false}: don't write output data that are required to
-  plot response curves.\cr
-  \code{visible=false}: don't show the Maxent user interface but run the
-  programm barely from the command line.\cr
-  \code{randomseed=true}: the background data will be split into different
-  test/train partitions with each new run.\cr
-  \code{writebackgroundpredictions=false}: don't write .csv files with
-  predictions at background points.\cr
-  \code{replicates=10}: number of replicate runs; this is only set for the calculation of AUC values.\cr
-  \code{replicatetype=subsample}: use random test/training data for
-  replicated sample sets; this is only set for the calculation of AUC values.\cr
-  \code{randomtestpoints=50}: 50 percent of presence points are randomly
-  set aside as test data; this is only set for the calculation of AUC values.\cr
-  \code{redoifexists}: redo the analysis if output files exist already.\cr
-  \code{writemess=false}: doesn't write multidimensional similarity
-  surfaces (MESS), which inform on novel climate conditions in the
-  projection layers.\cr
-  \code{writeclampgrid=false}: don't write a grid on the spatial
-  distribution of clamping.\cr
-  \code{askoverwrite=false}: don't ask if the data shall be
-  overwritten if they exist already.\cr
-  \code{pictures=false}: don't create .png images of the output grids\cr
-  \code{outputgrids=false}: don't write output grids for all replicate
-  runs but only the summary grids; this is only set for the calculation of AUC values.\cr
-  \code{outputformat=raw}: write output grids with raw probabilities of
-  presence; this is only set for calculation of information criteria.\cr
-  
-  What you might want to choose, for example, are the features to be
-  used, by selecting true or false for the arguments
-  \code{linear}, \code{quadratic}, \code{product}, \code{threshold},
-  and \code{hinge}.
-  
-  \bold{Model selection procedure}
 
-  First, an initial Maxent model is compiled with all provided
-  environmental variables. Then, all variables are excluded which have a
-  relative contribution score below the value set with
-  \code{contributionthreshold}. Then, those variables are removed that
-  corrleate with the variable of highest contribution (at a correlation
-  coefficient > \code{correlationthreshold} or <
-  -\code{correlationthreshold}).  The remaining set of variables is then
-  used to compile a new Maxent model. Again, variables with low
-  contribution scores are removed and remaining variables that are
-  correlated to the variable of second-highest contribution are
-  discarded. This process is repeated until left with a set of
-  uncorrelated variables that all had a model contribution above the value
-  set with \code{contributionthreshold}.  These steps are perfored for
-  the range of beta-multipliers specified with \code{betamultiplier}.
-
-
-  The performance of each Maxent model is assessed with the sample-size-
-  adjusted Akaike information criterion (AICc) (Akaike, 1974), the area
-  under the receiver operating characteristic (AUC) estimated from test
-  data (Fielding and Bell, 1997), and the difference between AUC values
-  from test and training data (AUC.Diff), which estimates model
-  overfitting. AICc values are estimated from single models that
-  include all occurrence sites, based on code in ENMTools (Warren et al.,
-  2010). AUC values, instead, are averaged over ten replicate runs which
-  differ in the set of 50\% test data that are randomly sub-sampled from
-  the occurrence sites and withheld from model construction. Maximization
-  of test AUC values generally favors models that can well discriminate
-  between presence and absence sites (Fielding and Bell, 1997; Warren and
-  Seifert, 2011). This, however, bears the risk to overpredict the
-  realized niche of a species (Jimenez-Valverde, 2012).
-
-  Instead, minimization of AICc values generally favors models that
-  recognize the fundamental niche of a species and that are better
-  transferable to future climate scenarios (Warren and Seifert, 2011).
-  The optimal set of variables along with the best beta multiplier is then
-  identified as the model of highest AUC or lowest AICc values (the output
-  gives you both options)
+  For further details on the model selection process and the variable
+  settings, please have a look at the vignette that comes with this
+  package. 
 }
 
 \value{
@@ -310,21 +205,6 @@ A review of methods for the assessment of prediction\cr
 errors in conservation presence/absence models\cr
 \emph{Environmental Conservation} \bold{24}:1 38--49.
 
-Jimenez-Valverde A (2012)\cr
-Insights into the area under the receiver operating characteristic curve\cr
-(AUC) as a discrimination measure in species distribution modelling\cr
-\emph{Global Ecology and Biogeography} \bold{21}:4 498--507.
-
-Warren DL, Glor RE, and Turelli M (2010)\cr
-ENMTools: a toolbox for comparative studies of environmental niche
-models\cr
-\emph{Ecography} \bold{33}:3 607--611.
-
-Warren DL and Seifert SN (2011)\cr
-Ecological niche modeling in Maxent: the importance of model\cr
-complexity and the performance of model selection criteria\cr
-\emph{Ecological Applications} \bold{21}:2 335--342.
-
 }
 
 
@@ -346,43 +226,8 @@ complexity and the performance of model selection criteria\cr
 %}
 \examples{
 \dontrun{
-
-# change this to the location of the maxent.jar file on your own
-# computer. This file is not included in the package
-
-maxent <- system.file("extdata", "maxent.jar", 
-package="MaxentVariableSelection")
-
-outdir="Test"
-
-# Because of the file size of variable grids, only one variable (sstmax)
-# is included in the package. Variable selection, however, only makes
-# sense when you have more variables available.
-
-gridfolder <- system.file("extdata/grids",
-package="MaxentVariableSelection")
-
-occurrencelocations <- system.file("extdata", "Occurrencedata.csv", 
-package="MaxentVariableSelection")
-
-backgroundlocations <- system.file("extdata", "Backgrounddata.csv", 
-package="MaxentVariableSelection")
-
-% unselect all but hinge features with the following additional
-% arguments
-additionalargs="nolinear noquadratic noproduct nothreshold noautofeature"
-
-% With the following selection, variable selection will run through the beta
-% multipliers 4, 4.5, 5, 5.5, 6, and 6.5.
-betamultiplier=seq(4,6.5,0.5)
-
-correlationthreshold <- 0.9
-
-contributionthreshold <- 5
-
-VariableSelection(maxent, outdir, gridfolder, occurrencelocations,
-backgroundlocations, additionalargs, contributionthreshold,
-correlationthreshold, betamultiplier)
-
+# Please find a workflow tutorial in the vignette of this package. It
+# will guide you through the settings and usage of the
+# 'VariableSelection' function, the core function of this package.
 }
 }

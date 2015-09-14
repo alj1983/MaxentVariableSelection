@@ -1,7 +1,0 @@
-Test	Contributions	Correlation	Contributions	Correlation	Contributions	Correlation	Contributions	Correlation
-Model	1	1	2	2	3	3	4	4
-betamultiplier	4.0	4.0	4.0	4.0	4.5	4.5	4.5	4.5
-calcite	68.1870000	 1.0000000	61.8176000	 0.1314525	62.8664000	 1.0000000	73.6094000	 0.1314525
-parmean	 0	NA	NA	NA	 0	NA	NA	NA
-salinity	0.0208	NA	NA	NA	0.2255	NA	NA	NA
-sstmax	31.7922000	 0.1314525	38.1824000	 1.0000000	36.9080000	 0.1314525	26.3906000	 1.0000000
