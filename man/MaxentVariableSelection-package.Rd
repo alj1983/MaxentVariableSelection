@@ -62,12 +62,12 @@ Alexander Jueterbock
 
 Maintainer: Alexander Jueterbock, <Alexander-Jueterbock@web.de> }
 
-\section{Citation}{To cite the package 'MaxentVariableSelection' in publications use:\cr\cr
-Jueterbock A, Smolina I, Coyer JA and  Hoarau, G (2015)\cr
-The fate of the Arctic seaweed Fucus distichus under climate change:\cr
-an ecological niche modelling approach\cr
-\emph{Journal of Biogeography}\cr
-\bold{submitted}
-}
+%% \section{Citation}{To cite the package 'MaxentVariableSelection' in publications use:\cr\cr
+%% Jueterbock A, Smolina I, Coyer JA and  Hoarau, G (2015)\cr
+%% The fate of the Arctic seaweed Fucus distichus under climate change:\cr
+%% an ecological niche modelling approach\cr
+%% \emph{Journal of Biogeography}\cr
+%% \bold{submitted}
+%% }
 
 \keyword{package}

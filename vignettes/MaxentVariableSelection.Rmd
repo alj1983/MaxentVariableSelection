@@ -17,14 +17,14 @@ vignette: >
 ---
 
 
-# Citation
+<!-- # Citation -->
 
-To cite the package 'MaxentVariableSelection' in publications, use:
+<!-- To cite the package 'MaxentVariableSelection' in publications, use: -->
 
-Jueterbock A, Smolina I, Coyer JA and Hoarau, G (2015)
-The fate of the Arctic seaweed *Fucus distichus* under climate change:
-an ecological niche modelling approach. 
-Submitted manuscript
+<!-- Jueterbock A, Smolina I, Coyer JA and Hoarau, G (2015) -->
+<!-- The fate of the Arctic seaweed *Fucus distichus* under climate change: -->
+<!-- an ecological niche modelling approach.  -->
+<!-- Submitted manuscript -->
 
 # Introduction
 
