@@ -27,7 +27,9 @@ background points. The background points were selected randomly along shorelines
   }
 }
 \examples{
-backgroundlocations <- system.file("extdata", "Backgrounddata.csv", package="MaxentVariableSelection")
+backgroundlocations <- system.file("extdata",
+                                   "Backgrounddata.csv",
+                                   package="MaxentVariableSelection")
 backgroundlocations <- read.csv(backgroundlocations,header=TRUE)
 head(backgroundlocations)
 }

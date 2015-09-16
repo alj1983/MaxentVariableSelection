@@ -26,7 +26,9 @@
   }
 }
 \examples{
-occurrencelocations <- system.file("extdata", "Occurrencedata.csv", package="MaxentVariableSelection")
+occurrencelocations <- system.file("extdata",
+                                   "Occurrencedata.csv",
+                                   package="MaxentVariableSelection")
 occurrencelocations <- read.csv(occurrencelocations,header=TRUE)
 head(occurrencelocations)
 }

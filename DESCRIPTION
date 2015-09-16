@@ -1,7 +1,7 @@
 Package: MaxentVariableSelection
 Type: Package
 Title:Selecting the best set of relevant environmental variables along
-  with the optimal regularization multiplier for MAXENT Niche Modeling
+  with the optimal regularization multiplier for Maxent Niche Modeling
 Version: 1.0-0
 Date: 2015-08-15
 Author: Alexander Jueterbock
@@ -12,11 +12,11 @@ Description: Complex niche models show low performance in identifying
     (Warren and Seifert, 2011; Warren et al., 2014). This package helps to
     identify the most important set of uncorrelated variables and to
     fine-tune Maxent's regularization multiplier. In combination, this
-    allows to constrain complexity and increase perforance of Maxent niche
+    allows to constrain complexity and increase performance of Maxent niche
     models (assessed by information criteria, such as AICc (Akaike, 1974) ,
     and by the area under the receiver operating characteristic (AUC)
     (Fielding and Bell, 1997). Users of this package should be familiar with
-    MAXENT niche modelling. 
+    Maxent niche modelling. 
 License: GPL (>= 2)
 Imports: ggplot2, raster
 Depends: R (>= 3.1.2)
