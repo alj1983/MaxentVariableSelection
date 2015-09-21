@@ -1,0 +1,13 @@
+@article{Warren2011,
+abstract = {Maxent, one of the most commonly used methods for inferring species distributions and environmental tolerances from occurrence data, allows users to fit models of arbitrary complexity. Model complexity is typically constrained via a process known as L1 regularization, but at present little guidance is available for setting the appropriate level of regularization, and the effects of inappropriately complex or simple models are largely unknown. In this study, we demonstrate the use of information criterion approaches to setting regularization in Maxent, and we compare models selected using information criteria to models selected using other criteria that are common in the literature. We evaluate model performance using occurrence data generated from a known ‘‘true’’ initial Maxent model, using several different metrics for model quality and transferability. We demonstrate that models that are inappropriately complex or inappropriately simple show reduced ability to infer habitat quality, reduced ability to infer the relative importance of variables in constraining species’ distributions, and reduced transferability to other time periods. We also demonstrate that information criteria may offer significant advantages over the methods commonly used in the literature.},
+annote = {M20120320-2},
+author = {Biology, Integrative},
+journal = {Ecological Applications : a publication of the Ecological Society of America},
+keywords = {akaike information criterion,auc,bayesian information criterion,distribution modeling,environmental niche,maxent,maximum entropy,model complexity,model transferability,modeling,niche shifts,species},
+number = {2},
+pages = {335--342},
+publisher = {Eco Soc America},
+title = {{Ecological niche modeling in Maxent : the importance of model complexity and the performance of model selection criteria}},
+volume = {21},
+year = {2011}
+}

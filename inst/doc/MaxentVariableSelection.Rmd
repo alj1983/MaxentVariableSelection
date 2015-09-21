@@ -9,7 +9,7 @@ output:
   pdf_document:
     toc: true
     highlight: zenburn
-bibliography: library.bib
+bibliography: /home/alj/Dropbox.personal/Dropbox/Literature/CompleteLiteratureMendeley/library.bib
 vignette: >
   %\VignetteIndexEntry{'MaxentVariableSelection' vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -179,7 +179,7 @@ downloaded from
 can not just copy the following line but instead have to specify the
 file path to the folder containing `maxent.jar` on your own computer.
 
-```{r, eval=FALSE}
+```{r}
 maxent <- ("/home/alj/Downloads/maxent.jar")
 
 ```
@@ -197,7 +197,7 @@ maxent <- ("C:/.../maxent.jar")
 ## `outdir`
 Filepath to the output directory, including the name of the directory, like:
 
-```{r, eval=FALSE}
+```{r}
 outdir <- ("/home/alj/Downloads/OutputDirectory")
 ```
 
@@ -226,7 +226,7 @@ you stored your ASCII grids. In this example I provide the filepath to
 the `Bio-ORACLE` rasters that I downloaded from
 [here](www.oracle.ugent.be/DATA/90_90_RV/BioOracle_9090RV.rar).
 
-```{r, eval=FALSE}
+```{r}
 gridfolder <- ("/home/alj/Downloads/BioORACLEVariables")
 ```
 
@@ -472,7 +472,7 @@ The figure `ModelSelectionAICc_MarkedMinAICc.png` shows that the model
 with beta-multiplier 2.5 and with only 2 environmental variables shows
 highest performance (lowest AICc). 
 
-![ModelSelectionAICc_MarkedMinAICc.png: AICc values of all models, which are ordered along the x-axis based on the applied beta-multiplier. The number of environmental variables included in each model is coded by dot color and size. The model with highest minimum AICc value is marked in red.](ModelSelectionAICc_MarkedMinAICc.png)
+![ModelSelectionAICc_MarkedMinAICc.png: AICc values of all models, which are ordered along the x-axis based on the applied beta-multiplier. The number of environmental variables included in each model is coded by dot color and size. The model with highest minimum AICc value is marked in red.](/home/alj/Downloads/OutputDirectory/ModelSelectionAICc_MarkedMinAICc.png)
 
 Instead, if you would decide to use AUC.Test values as performance
 criterion, the most relevant figure is
@@ -483,7 +483,7 @@ variables, the model with maximum AUC.Test value had a betamultiplier
 of 3.5, while the model with minimum AICc value had a betamultiplier
 of 2.5.
 
-![ModelSelectionAICc_MarkedMinAICc.png: AICc values of all models, which are ordered along the x-axis based on the applied beta-multiplier. The number of environmental variables included in each model is coded by dot color and size. The model with highest minimum AICc value is marked in red.](ModelSelectionAUCTest_MarkedMaxAUCTest.png)
+![ModelSelectionAICc_MarkedMinAICc.png: AICc values of all models, which are ordered along the x-axis based on the applied beta-multiplier. The number of environmental variables included in each model is coded by dot color and size. The model with highest minimum AICc value is marked in red.](/home/alj/Downloads/OutputDirectory/ModelSelectionAUCTest_MarkedMaxAUCTest.png)
 
 
 The figures also shows that the maximum number of variables in any of

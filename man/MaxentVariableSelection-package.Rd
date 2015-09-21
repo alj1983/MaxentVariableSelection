@@ -1,8 +1,8 @@
 \name{MaxentVariableSelection-package}
 \alias{MaxentVariableSelection}
 \docType{package}
-\title{Selecting the best set of relevant environmental variables along
-with the optimal regularization multiplier for Maxent Niche Modeling}
+\title{Selecting the Best Set of Relevant Environmental Variables along with the
+Optimal Regularization Multiplier for Maxent Niche Modeling}
 
 \description{Complex niche models show low performance in identifying
 the most important range-limiting environmental variables and in
@@ -21,7 +21,7 @@ Maxent niche modelling.}
 Package: \tab MaxentVariableSelection\cr
 Type: \tab Package\cr
 Version: \tab 1.0-0\cr
-Date: \tab 2015-08-15\cr
+Date: \tab 2015-09-21\cr
 Depends: \tab R (>= 3.1.2)\cr
 Imports: \tab ggplot2, raster\cr
 Suggests: \tab knitr, rmarkdown\cr

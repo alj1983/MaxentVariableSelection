@@ -21,7 +21,6 @@ To install and load the package from github, type:
 ``` {.r}
 install.packages("devtools") 
 devtools::install_github("alj1983/MaxentVariableSelection")
-library(MaxentVariableSelection)
 ```
 
 Documentation
