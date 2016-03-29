@@ -17,14 +17,15 @@ vignette: >
 ---
 
 
-<!-- # Citation -->
+# Citation
 
-<!-- To cite the package 'MaxentVariableSelection' in publications, use: -->
+To cite the package 'MaxentVariableSelection' in publications, use:
 
-<!-- Jueterbock A, Smolina I, Coyer JA and Hoarau, G (2015) -->
-<!-- The fate of the Arctic seaweed *Fucus distichus* under climate change: -->
-<!-- an ecological niche modelling approach.  -->
-<!-- Submitted manuscript -->
+Jueterbock, A., Smolina, I., Coyer, J. A., & Hoarau, G. (2016). 
+The fate of the Arctic seaweed *Fucus distichus* under climate change: 
+an ecological niche modeling approach. 
+*Ecology and Evolution* **6**(6) 1712-1724.
+
 
 # Introduction
 
@@ -553,5 +554,6 @@ because the correlation between them was below the
 In conclusion, the optimal model settings (based on the
 performance-indicator AICc) are: 1) a beta-multiplier of 2.5; and 2) a
 subset of two environmental variables: `calcite` and `sstmax`.
+
 
 # References
