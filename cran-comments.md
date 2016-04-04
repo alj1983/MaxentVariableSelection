@@ -1,3 +1,6 @@
+## Resubmission
+This is a resubmission. In this version I have corrected the text citation for this package
+
 ## Test environments
 * ubuntu 14.04, R 3.1.2
 
@@ -17,3 +20,4 @@ Possibly mis-spelled words in DESCRIPTION:
 
 
 All words are spelled correctly
+

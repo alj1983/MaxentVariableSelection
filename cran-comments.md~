@@ -1,14 +1,10 @@
+## Resubmission
+This is a resubmission. In this version I have corrected the citation for this package
+
 ## Test environments
 * ubuntu 14.04, R 3.1.2
 
 ## R CMD check results
-* There was one WARNING:
-checking package vignettes in ‘inst/doc’ ... WARNING
-Package vignette without corresponding PDF/HTML:
-   ‘MaxentVariableSelection.Rmd’
-
-The html and pdf files are, however, provided
-
 * There was 1 NOTE:
 
 checking CRAN incoming feasibility ... NOTE
@@ -24,3 +20,12 @@ Possibly mis-spelled words in DESCRIPTION:
 
 
 All words are spelled correctly
+
+* Fixed: 
+
+Added the following to NAMESPACE
+
+export(VariableSelection)
+importFrom("grDevices", "dev.off", "png")
+importFrom("stats", "cor")
+importFrom("utils", "read.csv", "read.table", "write.table")
