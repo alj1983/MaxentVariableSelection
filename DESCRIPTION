@@ -31,4 +31,4 @@ VignetteBuilder: knitr
 SystemRequirements: maxent.jar file
 LazyData: true
 Packaged: 2015-09-16 20:59:52 UTC; alj
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
