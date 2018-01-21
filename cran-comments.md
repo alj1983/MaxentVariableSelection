@@ -5,14 +5,6 @@ This is a resubmission. In this version I have corrected the vignette.
 * ubuntu 16.04, R 3.2.3
 
 ## R CMD check results
-* There was one WARNING
-
-checking package vignettes in ‘inst/doc’ ... WARNING
-Package vignette without corresponding PDF/HTML:
-   ‘MaxentVariableSelection.Rmd’
-
-The pdf and html files are included in inst/doc
-
 
 * There was one NOTE
 Possibly mis-spelled words in DESCRIPTION:

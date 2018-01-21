@@ -5,23 +5,25 @@
 Optimal Regularization Multiplier for Maxent Niche Modeling}
 
 \description{Complex niche models show low performance in identifying
-the most important range-limiting environmental variables and in
-transferring habitat suitability to novel environmental conditions
-(Warren and Seifert, 2011; Warren et al., 2014). This package helps to
-identify the most important set of uncorrelated variables and to
-fine-tune Maxent's regularization multiplier. In combination, this
-allows to constrain complexity and increase perforance of Maxent niche
-models (assessed by information criteria, such as AICc (Akaike, 1974) ,
-and by the area under the receiver operating characteristic (AUC)
-(Fielding and Bell, 1997). Users of this package should be familiar with
-Maxent niche modelling.}
+    the most important range-limiting environmental variables and in
+    transferring habitat suitability to novel environmental conditions
+    (Warren and Seifert, 2011 <DOI:10.1890/10-1171.1>; Warren et al.,
+    2014 <DOI:10.1111/ddi.12160>). This package helps to identify the
+    most important set of uncorrelated variables and to fine-tune Maxent's
+    regularization multiplier. In combination, this allows to constrain
+    complexity and increase performance of Maxent niche models (assessed
+    by information criteria, such as AICc (Akaike, 1974
+    <DOI:10.1109/TAC.1974.1100705>), and by the area under the receiver
+    operating characteristic (AUC) (Fielding and Bell, 1997
+    <DOI:10.1017/S0376892997000088>). Users of this package should be
+    familiar with Maxent niche modelling.}
 
 \details{
 \tabular{ll}{
 Package: \tab MaxentVariableSelection\cr
 Type: \tab Package\cr
 Version: \tab 1.0-3\cr
-Date: \tab 2017-04-09\cr
+Date: \tab 2018-01-20\cr
 Depends: \tab R (>= 3.1.2)\cr
 Imports: \tab ggplot2, raster\cr
 Suggests: \tab knitr, rmarkdown\cr

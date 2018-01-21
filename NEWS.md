@@ -1,5 +1,5 @@
 # MaxentVariableSelection v1.0-3
-synchronized the vignette version between the vignettes and the inst/doc folders
+Updated the vignette and added DOIs to the cited references in the description.
 
 # MaxentVariableSelection v1.0-2
 Corrected text version of package citation
