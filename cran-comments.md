@@ -1,5 +1,9 @@
 ## Resubmission
-This is a resubmission. In this version I have corrected the vignette.
+
+This is a resubmission. In this version I have corrected the vignette
+and added DOIs to the references in the description, as
+requested. Also added example code in the example section of the
+VariableSelection.Rd file as requested.
 
 ## Test environments
 * ubuntu 16.04, R 3.2.3

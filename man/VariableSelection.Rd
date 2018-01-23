@@ -230,4 +230,17 @@ errors in conservation presence/absence models\cr
 # will guide you through the settings and usage of the
 # 'VariableSelection' function, the core function of this package.
 }
+\donttest{
+VariableSelection(
+maxent="C:/.../maxent.jar",
+outdir="OutputDirectory",
+gridfolder"BioORACLEVariables",
+occurrencelocations=system.file("extdata", "Occurrencedata.csv", package="MaxentVariableSelection"),
+backgroundlocations=system.file("extdata", "Backgrounddata.csv", package="MaxentVariableSelection"),
+additionalargs="nolinear noquadratic noproduct nothreshold noautofeature",
+contributionthreshold=5,
+correlationthreshold=0.9,
+betamultiplier=seq(2,6,0.5)
+)
+}
 }

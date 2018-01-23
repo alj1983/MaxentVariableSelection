@@ -1,5 +1,6 @@
 # MaxentVariableSelection v1.0-3
 Updated the vignette and added DOIs to the cited references in the description.
+Also added a small executable in the example section of the main function VariableSelection().
 
 # MaxentVariableSelection v1.0-2
 Corrected text version of package citation

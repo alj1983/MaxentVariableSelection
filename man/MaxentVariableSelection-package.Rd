@@ -23,7 +23,7 @@ Optimal Regularization Multiplier for Maxent Niche Modeling}
 Package: \tab MaxentVariableSelection\cr
 Type: \tab Package\cr
 Version: \tab 1.0-3\cr
-Date: \tab 2018-01-20\cr
+Date: \tab 2018-01-23\cr
 Depends: \tab R (>= 3.1.2)\cr
 Imports: \tab ggplot2, raster\cr
 Suggests: \tab knitr, rmarkdown\cr

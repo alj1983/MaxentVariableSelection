@@ -4,7 +4,7 @@ Title: Selecting the Best Set of Relevant Environmental Variables
     along with the Optimal Regularization Multiplier for Maxent
     Niche Modeling
 Version: 1.0-3
-Date: 2018-01-20
+Date: 2018-01-23
 Author: Alexander Jueterbock
 Maintainer: "Alexander Jueterbock" <Alexander-Jueterbock@web.de>
 Description: Complex niche models show low performance in identifying
