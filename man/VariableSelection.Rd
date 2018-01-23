@@ -234,7 +234,7 @@ errors in conservation presence/absence models\cr
 VariableSelection(
 maxent="C:/.../maxent.jar",
 outdir="OutputDirectory",
-gridfolder"BioORACLEVariables",
+gridfolder="BioORACLEVariables",
 occurrencelocations=system.file("extdata", "Occurrencedata.csv", package="MaxentVariableSelection"),
 backgroundlocations=system.file("extdata", "Backgrounddata.csv", package="MaxentVariableSelection"),
 additionalargs="nolinear noquadratic noproduct nothreshold noautofeature",
